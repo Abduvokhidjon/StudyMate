@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 public class MainPage extends AbstractComponent {
     WebDriver driver;
 
-    @FindBy(xpath = "//p[@class='sc-iTFTee jnrlga']")
+    @FindBy(xpath = "//p[contains(text(),'Student')]")
     WebElement user;
 
     public MainPage(WebDriver driver) {
@@ -19,6 +19,7 @@ public class MainPage extends AbstractComponent {
     }
 
     public String getUserStatus(){
+        waitForElementToAppear(user);
         return user.getText();
     }
 

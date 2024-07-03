@@ -49,7 +49,7 @@ public class BaseTest {
         loginPage.openWebsite(Config.getProperty("website"));
         return loginPage;
     }
-//    @AfterMethod
+    @AfterMethod
     public void tearDown(){
         driver.quit();
     }

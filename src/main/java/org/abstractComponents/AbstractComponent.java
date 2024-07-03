@@ -16,7 +16,14 @@ public class AbstractComponent {
         PageFactory.initElements(driver, this);
     }
     public void waitForElementToAppear(WebElement webElement){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+    public static void waitForSeconds(int numberOfSeconds){
+        try{
+            Thread.sleep(numberOfSeconds * 1000);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
     }
 }

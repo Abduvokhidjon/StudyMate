@@ -10,6 +10,7 @@ public class LoginTest extends BaseTest {
     @Test
     public void loginAsStudent(){
         MainPage mainPage = loginPage.login(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
+//        mainPage.getUserStatus();
         // assert
         Assert.assertEquals(mainPage.getUserStatus(), Config.getProperty("userStatus"));
     }
