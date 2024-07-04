@@ -9,9 +9,13 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
     @Test
     public void loginAsStudent(){
-        MainPage mainPage = loginPage.login(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
-//        mainPage.getUserStatus();
-        // assert
+        MainPage mainPage = loginPage.loginWithValidCredentials(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
         Assert.assertEquals(mainPage.getUserStatus(), Config.getProperty("userStatus"));
+    }
+
+    @Test
+    public void negativeLoginTest(){
+        loginPage.loginWithInvalidCredentials(Config.getProperty("invalidLogin"),Config.getProperty("invalidPassword"));
+        Assert.assertEquals(loginPage.getAlertText(), "User with email " + Config.getProperty("invalidLogin") + " not found");
     }
 }

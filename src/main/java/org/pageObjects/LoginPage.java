@@ -17,6 +17,9 @@ public class LoginPage  extends AbstractComponent {
     @FindBy(id = ":r0:")
     WebElement loginInput;
 
+    @FindBy(xpath = "//div[contains(@class,'MuiAlert-message')]//p")
+    WebElement alertMessage;
+
     @FindBy(id = ":r1:")
     WebElement passwordInput;
 
@@ -29,15 +32,27 @@ public class LoginPage  extends AbstractComponent {
 //    @FindBy(className = "sc-fnGiBr bAtogt")
 //    WebElement forgotPasswordBtn;
 
-    public MainPage login(String userLogin, String userPassword){
+    public MainPage loginWithValidCredentials(String userLogin, String userPassword){
         loginInput.sendKeys(userLogin);
         passwordInput.sendKeys(userPassword);
         loginBtn.click();
 
         return new MainPage(driver);
     }
+    public void loginWithInvalidCredentials(String invalidLogin, String invalidPassword){
+        loginInput.sendKeys(invalidLogin);
+        passwordInput.sendKeys(invalidPassword);
+        loginBtn.click();
+    }
+
+
 
     public void openWebsite(String URL){
         driver.get(URL);
+    }
+
+    public String getAlertText(){
+        waitForElementToAppear(alertMessage);
+        return alertMessage.getText();
     }
 }
