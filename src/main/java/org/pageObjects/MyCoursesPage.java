@@ -6,21 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class MainPage extends AbstractComponent {
+public class MyCoursesPage extends AbstractComponent {
     WebDriver driver;
 
-    @FindBy(xpath = "//p[contains(text(),'Student')]")
-    WebElement user;
-
-    public MainPage(WebDriver driver) {
+    public MyCoursesPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public String getUserStatus(){
-        waitForElementToAppear(user);
-        return user.getText();
-    }
+
+
+
 
 }

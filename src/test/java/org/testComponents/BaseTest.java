@@ -12,46 +12,65 @@ import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
 public class BaseTest {
-    WebDriver driver;
+    static WebDriver driver;
     public LoginPage loginPage;
 
-    public WebDriver initDriver(){
-        if (driver != null) return driver;
+    public static WebDriver initDriver(){
+        if (driver == null) {
 
-        String browser = Config.getProperty("browser");
+            String browser = Config.getProperty("browser");
 
-        switch (browser){
-            case "chrome":
-                driver = new ChromeDriver();
-                break;
-            case "safari":
-                driver = new SafariDriver();
-                break;
-            case "forefox":
-                driver = new FirefoxDriver();
-                break;
-            default:
-                driver = new ChromeDriver();
-                break;
+            switch (browser) {
+                case "chrome":
+                    driver = new ChromeDriver();
+                    break;
+                case "safari":
+                    driver = new SafariDriver();
+                    break;
+                case "forefox":
+                    driver = new FirefoxDriver();
+                    break;
+                default:
+                    driver = new ChromeDriver();
+            }
+
+            driver.manage().timeouts()
+                    .pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(Config.getProperty("pageLoadTimeout"))));
+            driver.manage().timeouts()
+                    .implicitlyWait(Duration.ofSeconds(Integer.parseInt(Config.getProperty("implicitlyWait"))));
+            driver.manage().window().maximize();
         }
+        return driver;
+    }
+    public static WebDriver getDriver(){
+
+        // if driver object already exists, then we just return it
+        driver = new ChromeDriver();
+
         driver.manage().timeouts()
                 .pageLoadTimeout(Duration.ofSeconds(Integer.parseInt(Config.getProperty("pageLoadTimeout"))));
         driver.manage().timeouts()
                 .implicitlyWait(Duration.ofSeconds(Integer.parseInt(Config.getProperty("implicitlyWait"))));
         driver.manage().window().maximize();
+
         return driver;
+
     }
+
+
 
     @BeforeMethod
     public LoginPage launchApplication(){
-        driver = initDriver();
+        driver = getDriver();
+
         loginPage = new LoginPage(driver);
+
         loginPage.openWebsite(Config.getProperty("website"));
         return loginPage;
     }
     @AfterMethod
     public void tearDown(){
-        driver.quit();
+        driver.close();
     }
 
 }
