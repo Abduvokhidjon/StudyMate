@@ -7,24 +7,24 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage  extends AbstractComponent {
-    WebDriver driver;
+    private WebDriver driver;
     public LoginPage(WebDriver driver) {
         super(driver);
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
     @FindBy(xpath = "//input[@autocomplete='username']")
-    WebElement loginInput;
+    private WebElement loginInput;
 
     @FindBy(xpath = "//div[contains(@class,'MuiAlert-message')]//p")
-    WebElement alertMessage;
+    private WebElement alertMessage;
 
     @FindBy(xpath = "//input[@id=':r1:']")
-    WebElement passwordInput;
+    private WebElement passwordInput;
 
     @FindBy(xpath = "//button[@type='submit']")
-    WebElement loginBtn;
-    ;
+    private WebElement loginBtn;
+
 
     public MyCoursesPage loginWithValidCredentials(String userLogin, String userPassword){
         loginInput.sendKeys(userLogin);
@@ -37,9 +37,7 @@ public class LoginPage  extends AbstractComponent {
         loginInput.sendKeys(invalidLogin);
         passwordInput.sendKeys(invalidPassword);
         loginBtn.click();
-
         return getAlertText();
-
     }
 
 
