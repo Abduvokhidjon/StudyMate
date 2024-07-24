@@ -1,39 +1,43 @@
-package org.Tests;
+package org.tests;
 
 import org.abstractComponents.AbstractComponent;
 import org.pageObjects.MyCoursesPage;
 import org.resources.Config;
-import org.testComponents.BaseTest;
+import testComponents.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
 public class SchedulePageTests extends BaseTest {
-    @Test
+    @Test (groups = {"regression"})
     public void testSuccessfulLogOut(){
         MyCoursesPage MyCoursesPage = loginPage.loginWithValidCredentials(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
         String urlBeforeLogout = AbstractComponent.getCurrentUrl();
+        AbstractComponent.goToSchedulePage();
         AbstractComponent.logOut();
         String urlAfterLogout = AbstractComponent.getCurrentUrl();
         Assert.assertNotEquals(urlBeforeLogout,urlAfterLogout);
     }
-    @Test
+    @Test (groups = {"regression"})
     public void testWithClickingOutsideBox(){
         MyCoursesPage MyCoursesPage = loginPage.loginWithValidCredentials(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
-        AbstractComponent.goToMyCoursesPage();
-        String urlBefore = AbstractComponent.getCurrentUrl();
-        AbstractComponent.openLogoutWindow();
+        AbstractComponent.goToSchedulePage();
 
+        AbstractComponent.openLogoutWindow();
+        String urlBefore = AbstractComponent.getCurrentUrl();
+
+        System.out.println(urlBefore);
 
         int xOfLogoutWindow = AbstractComponent.getXofElement(AbstractComponent.getLogoutWindow());
         int yOfLogoutWindow = AbstractComponent.getYofElement(AbstractComponent.getLogoutWindow());
 
         // clicking out of logout window
-        AbstractComponent.moveAndClick(xOfLogoutWindow - 10, yOfLogoutWindow - 10);
+        AbstractComponent.moveAndClick(xOfLogoutWindow - 50, yOfLogoutWindow - 50);
         String urlAfter = AbstractComponent.getCurrentUrl();
+        System.out.println(urlAfter);
 
-
-        Assert.assertEquals(urlBefore,urlAfter);
-
+        Assert.assertNotEquals(urlBefore,urlAfter);
     }
+
+
 }

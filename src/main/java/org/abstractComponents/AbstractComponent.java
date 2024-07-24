@@ -2,6 +2,7 @@ package org.abstractComponents;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -96,5 +97,12 @@ public class AbstractComponent {
         Actions actions = new Actions(driver);
         actions.moveByOffset(x,y).click().build().perform();
     }
+    public static boolean verifyTextInElement(WebDriver driver, int numOfSec, WebElement element, String expectedText){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(numOfSec));
+        wait.until(ExpectedConditions.textToBePresentInElement(element, expectedText));
+        return element.getText().equals(expectedText);
+    }
+
+
 
 }

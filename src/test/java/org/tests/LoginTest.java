@@ -1,19 +1,19 @@
-package org.Tests;
+package org.tests;
 
 import org.abstractComponents.AbstractComponent;
 import org.pageObjects.MyCoursesPage;
 import org.resources.Config;
-import org.testComponents.BaseTest;
+import testComponents.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
-    @Test
+    @Test (groups = {"regression"})
     public void negativeLoginTest(){
         String alertMsg = loginPage.loginWithInvalidCredentials(Config.getProperty("invalidLogin"),Config.getProperty("invalidPassword"));
         Assert.assertEquals(alertMsg, "User with email " + Config.getProperty("invalidLogin") + " not found");
     }
-    @Test
+    @Test (groups = {"regression"})
     public void loginAsStudent(){
         MyCoursesPage mainPage = loginPage.loginWithValidCredentials(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
         AbstractComponent.waitForSeconds(2);

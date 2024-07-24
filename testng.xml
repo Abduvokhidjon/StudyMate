@@ -3,7 +3,7 @@
 <suite name="All Test Suite" parallel="false">
     <test verbose="2" preserve-order="true" name="/Users/salavat/Desktop/Batch6/StudyMateStudent">
         <classes>
-            <class name="org.Tests.LoginTest">
+            <class name="org.tests.LoginTest">
 <!--            <methods>-->
 <!--                <include name="loginAsStudent"/>-->
 <!--                <include name="negativeLoginTest"/>-->

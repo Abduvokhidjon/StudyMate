@@ -1,5 +1,6 @@
-package org.testComponents;
+package testComponents;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,6 +9,7 @@ import org.pageObjects.LoginPage;
 import org.resources.Config;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import java.time.Duration;
 
@@ -59,7 +61,9 @@ public class BaseTest {
 
 
 
-    @BeforeMethod
+
+
+    @BeforeMethod (groups = {"regression"})
     public LoginPage launchApplication(){
         driver = getDriver();
 
@@ -68,7 +72,7 @@ public class BaseTest {
         loginPage.openWebsite(Config.getProperty("website"));
         return loginPage;
     }
-    @AfterMethod
+    @AfterMethod  (groups = {"regression"})
     public void tearDown(){
         driver.close();
     }
