@@ -49,6 +49,16 @@ public class MyCoursesPageTest extends BaseTest {
 
 
 
+    @Test
+    public void testVideo() throws InterruptedException {
+        MyCoursesPage page = loginPage.loginWithValidCredentials(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
+        page.clickOnCourseByTitle("Team5\n" +
+                "2024-07-24");
+        page.a();
+//        Thread.sleep(10000);
+//        page.clickOnLessonByTitle("Lesson1");
+    }
+
 
 
 
