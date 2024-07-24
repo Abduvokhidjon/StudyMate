@@ -28,6 +28,7 @@ public class SchedulePage extends AbstractComponent {
 
     @FindBy (xpath = "//li[@data-value=\"timeGridDay\"]")
     public WebElement dayDropdown;
+
     @FindBy(xpath = "(//*[text()='Test event'])[1]")
     public WebElement eventTest;
     @FindBy(xpath = "(//*[text()='Test Shedule'])[1]")
@@ -38,5 +39,7 @@ public class SchedulePage extends AbstractComponent {
     public WebElement russTesting;
     @FindBy(xpath = "//div[@class=\"sc-iveFHk kqpnEj\"]")
     public WebElement kufhkButton;
+
+
 
 }

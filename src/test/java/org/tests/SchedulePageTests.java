@@ -62,6 +62,15 @@ public class SchedulePageTests extends BaseTest {
         System.out.println(urlAfter + "URL AFTER click Button");
         Assert.assertNotEquals(urlBefore,(urlAfter));
 
+    @Test
+    public void testMonth() {
+        MyCoursesPage MyCoursesPage = loginPage.loginWithValidCredentials(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
+        AbstractComponent.goToSchedulePage();
+        SchedulePage schedulePage = new SchedulePage();
+
+    }
+
+
 
     }
     @Test(groups = {"regression"})
