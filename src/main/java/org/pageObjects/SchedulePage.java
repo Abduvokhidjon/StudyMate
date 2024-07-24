@@ -17,6 +17,20 @@ public class SchedulePage extends AbstractComponent {
         PageFactory.initElements(driver, this);
     }
 
+    @FindBy (xpath = "//div[@class=\"MuiSelect-select MuiSelect-outlined MuiInputBase-input MuiOutlinedInput-input css-qiwgdb\"]")
+    public WebElement dropdown;
+
+    @FindBy (xpath = "//li[@data-value=\"dayGridMonth\"]")
+    public WebElement monthDropdown;
+
+    @FindBy (xpath = "//li[@data-value=\"timeGridWeek\"]")
+    public WebElement weekDropdown;
+
+    @FindBy (xpath = "//li[@data-value=\"timeGridDay\"]")
+    public WebElement dayDropdown;
+
+
+
 
 
 

@@ -2,6 +2,7 @@ package org.tests;
 
 import org.abstractComponents.AbstractComponent;
 import org.pageObjects.MyCoursesPage;
+import org.pageObjects.SchedulePage;
 import org.resources.Config;
 import testComponents.BaseTest;
 import org.testng.Assert;
@@ -38,6 +39,16 @@ public class SchedulePageTests extends BaseTest {
 
         Assert.assertNotEquals(urlBefore,urlAfter);
     }
+
+    @Test
+    public void testMonth() {
+        MyCoursesPage MyCoursesPage = loginPage.loginWithValidCredentials(Config.getProperty("studentLogin"),Config.getProperty("studentPassword"));
+        AbstractComponent.goToSchedulePage();
+        SchedulePage schedulePage = new SchedulePage();
+
+    }
+
+
 
 
 }
